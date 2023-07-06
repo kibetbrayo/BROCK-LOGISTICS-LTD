@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", fetchData);
 const routeSelect = document.getElementById('route');
 const numTrucksInput = document.getElementById('numTrucks');
 const submitBtn = document.getElementById('submitBtn');
@@ -100,4 +101,4 @@ function handleSubmit() {
   numTrucksInput.value = '';
 }
 
-document.addEventListener("DOMContentLoaded", fetchData);
+// document.addEventListener("DOMContentLoaded", fetchData);
