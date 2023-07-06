@@ -1,10 +1,3 @@
-const menuToggle = document.getElementById('menuToggle');
-const menu = document.getElementById('menu');
-
-menuToggle.addEventListener('click', function () {
-  menu.classList.toggle('active');
-});
-
 const routeSelect = document.getElementById('route');
 const numTrucksInput = document.getElementById('numTrucks');
 const submitBtn = document.getElementById('submitBtn');
@@ -22,66 +15,59 @@ function updateAvailableTrucks(count) {
   availableTrucksDiv.textContent = `Available Trucks: ${availableTrucks}`;
 }
 
-routeSelect.addEventListener('change', () => {
-  const selectedRoute = routeSelect.value;
+function fetchData() {
+  return fetch('db.json')
+    .then(response => response.json())
+    .catch(error => {
+      console.error('Error:', error);
+    });
+}
 
-  if (selectedRoute) {
-    // Fetch trailer and route information from a JSON file or API
-    fetch('https://brian-vie3.onrender.com/trailers')
-      .then(response => response.json())
-      .then(data => {
-        const trailers = data.trailers;
-        const selectedTrailer = trailers.find(trailer => {
-          return trailer.routes.find(route => route.route === selectedRoute);
-        });
+function populateRoutes(data) {
+  data.trailers.forEach(trailer => {
+    trailer.routes.forEach(route => {
+      const option = document.createElement('option');
+      option.value = route.route;
+      option.textContent = route.route;
+      routeSelect.appendChild(option);
+    });
+  });
+}
 
-        if (selectedTrailer) {
-          const selectedRouteInfo = selectedTrailer.routes.find(route => route.route === selectedRoute);
+function updateTrailerInfo(data, selectedRoute) {
+  const selectedTrailer = data.trailers.find(trailer =>
+    trailer.routes.some(route => route.route === selectedRoute)
+  );
 
-          if (selectedRouteInfo) {
-            imageDiv.innerHTML = '';
-            costRateDiv.innerHTML = '';
-            transitDaysDiv.innerHTML = '';
-            tonnageCapacityDiv.innerHTML = '';
+  if (selectedTrailer) {
+    const selectedRouteInfo = selectedTrailer.routes.find(
+      route => route.route === selectedRoute
+    );
 
-            const image = document.createElement('img');
-            image.src = selectedTrailer.image;
-            imageDiv.appendChild(image);
-
-            const costRate = document.createElement('p');
-            costRate.textContent = `Cost Rate: Kshs ${selectedRouteInfo.cost_rate}`;
-            costRateDiv.appendChild(costRate);
-
-            const transitDays = document.createElement('p');
-            transitDays.textContent = `Transit Days: ${selectedRouteInfo.transit_days}`;
-            transitDaysDiv.appendChild(transitDays);
-
-            const tonnageCapacity = document.createElement('p');
-            tonnageCapacity.textContent = `Tonnage Capacity: ${selectedRouteInfo.tonnage_capacity} tons`;
-            tonnageCapacityDiv.appendChild(tonnageCapacity);
-
-            updateAvailableTrucks(0);
-          } else {
-            trailerInfo.innerHTML = '<p>Route information not found.</p>';
-          }
-        } else {
-          trailerInfo.innerHTML = '<p>Trailer information not found.</p>';
-        }
-      })
-      .catch(error => {
-        console.error('Error:', error);
-      });
-  } else {
-    // Clear trailer info
     imageDiv.innerHTML = '';
     costRateDiv.innerHTML = '';
     transitDaysDiv.innerHTML = '';
     tonnageCapacityDiv.innerHTML = '';
-    trailerInfo.innerHTML = '';
-  }
-});
 
-submitBtn.addEventListener('click', () => {
+    const image = document.createElement('img');
+    image.src = selectedTrailer.image;
+    imageDiv.appendChild(image);
+
+    const costRate = document.createElement('p');
+    costRate.textContent = `Cost Rate: Kshs ${selectedRouteInfo.cost_rate}`;
+    costRateDiv.appendChild(costRate);
+
+    const transitDays = document.createElement('p');
+    transitDays.textContent = `Transit Days: ${selectedRouteInfo.transit_days}`;
+    transitDaysDiv.appendChild(transitDays);
+
+    const tonnageCapacity = document.createElement('p');
+    tonnageCapacity.textContent = `Tonnage Capacity: ${selectedRouteInfo.tonnage_capacity} tons`;
+    tonnageCapacityDiv.appendChild(tonnageCapacity);
+  }
+}
+
+function handleSubmit() {
   const selectedRoute = routeSelect.value;
   const numTrucks = parseInt(numTrucksInput.value);
 
@@ -106,4 +92,14 @@ submitBtn.addEventListener('click', () => {
   updateAvailableTrucks(numTrucks);
 
   numTrucksInput.value = '';
-});
+}
+
+fetchData()
+  .then(data => {
+    populateRoutes(data);
+    routeSelect.addEventListener('change', () => {
+      const selectedRoute = routeSelect.value;
+      updateTrailerInfo(data, selectedRoute);
+    });
+    submitBtn.addEventListener('click', handleSubmit);
+  });
