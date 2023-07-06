@@ -5,7 +5,7 @@ Created by BRIAN KIBET ON 6/7/2023
 ## LINKS 
 https://brock-logistics.onrender.com
 https://github.com/kibetbrayo/BROCK-LOGISTICS-LTD
-## scription
+## Description
 The Trailer API project provides a RESTful API for accessing information about trailers. It allows users to retrieve data related to trailers, such as their specifications, availability, and other relevant details.
 
 The customer is able to 
