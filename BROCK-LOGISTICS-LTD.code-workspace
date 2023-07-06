@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../../../../landin page/images"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "BROCK-LOGISTICS-LTD",
+		"liveServer.settings.port": 5501
+	}
+}
