@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Logistic Company</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>BROCK LOGISTICS</h1>
+  </header>
+  <nav class="navbar">
+    <div class="icon">
+      <h1 class="logo"><img src="./logo.jpeg" alt=""></h1>
+    </div>
+    <div class="menu" id="menu">
+      <ul>
+        <li><a href="#home">HOME</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#services">SERVICES</a></li>
+        <li><a href="#location">LOCATIONS</a></li>
+        <li><a href="#contacts">CONTACTS</a></li>
+      </ul>
+    </div>
+    <div class="menu-toggle" id="menuToggle">
+      <div class="menu-icon"></div>
+    </div>
+  </nav>
+  <div class="main">
+    <div class="content">
+      <h1>Transport & Logistics</h1>
+      <p>Offering unbeatable trucking and transport services starting from loading to unloading. With our commitment to maintaining the highest standards of safety during transit, we leave nothing to chance!</p>
+
+      <div class="container">
+        <div class="routes">
+          <label for="route">Select a Route:</label>
+          <select id="route">
+            <option value="">Select...</option>
+            <option value="Nairobi to Mombasa">Nairobi to Mombasa</option>
+            <option value="Nairobi to Kisumu">Nairobi to Kisumu</option>
+            <option value="Nairobi to Nakuru">Nairobi to Nakuru</option>
+            <option value="Mombasa to Nairobi">Mombasa to Nairobi</option>
+            <option value="Mombasa to Kisumu">Mombasa to Kisumu</option>
+            <option value="Mombasa to Nakuru">Mombasa to Nakuru</option>
+          </select>
+        </div>
+
+        <div class="trailer-info" id="trailerInfo">
+          <h3>TRUCK INFORMATION:</h3>
+          <p>Convenient, fast, and reliable</p>
+          <div id="image"></div>
+          <div id="costRate"></div>
+          <div id="transitDays"></div>
+          <div id="tonnageCapacity"></div>
+        </div>
+
+        <div class="booking">
+          <label for="numTrucks">Number of Trucks:</label>
+          <input type="number" id="numTrucks" min="1" max="100">
+          <button id="submitBtn">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>
