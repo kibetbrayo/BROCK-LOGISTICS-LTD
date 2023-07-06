@@ -16,15 +16,21 @@ function updateAvailableTrucks(count) {
 }
 
 function fetchData() {
-  return fetch('db.json')
+  return fetch('https://brock-logistics.onrender.com/trailers')
     .then(response => response.json())
-    .catch(error => {
-      console.error('Error:', error);
+    .then(data => {
+      console.log(data);
+      populateRoutes(data);
+      routeSelect.addEventListener('change', () => {
+        const selectedRoute = routeSelect.value;
+        updateTrailerInfo(data, selectedRoute);
+      });
+      submitBtn.addEventListener('click', handleSubmit);
     });
 }
 
 function populateRoutes(data) {
-  data.trailers.forEach(trailer => {
+  data.forEach(trailer => {
     trailer.routes.forEach(route => {
       const option = document.createElement('option');
       option.value = route.route;
@@ -35,7 +41,7 @@ function populateRoutes(data) {
 }
 
 function updateTrailerInfo(data, selectedRoute) {
-  const selectedTrailer = data.trailers.find(trailer =>
+  const selectedTrailer = data.find(trailer =>
     trailer.routes.some(route => route.route === selectedRoute)
   );
 
@@ -94,12 +100,4 @@ function handleSubmit() {
   numTrucksInput.value = '';
 }
 
-fetchData()
-  .then(data => {
-    populateRoutes(data);
-    routeSelect.addEventListener('change', () => {
-      const selectedRoute = routeSelect.value;
-      updateTrailerInfo(data, selectedRoute);
-    });
-    submitBtn.addEventListener('click', handleSubmit);
-  });
+document.addEventListener("DOMContentLoaded", fetchData);
