@@ -37,6 +37,25 @@ Java script
 styles.css
 Other dependencies (listed in package.json)
 
+## Screenshots Of  brock websites
+
+- Homepage
+
+  <img src="./screenshots/homepage.png" alt="screenshot" />
+
+- Route menudropdown Details
+
+  <img src="./screenshots/dropdownmenu%20routes.png" alt="screenshot" />
+
+- Route details
+
+  <img src="./screenshots/route%20details.png" alt="screenshot" />
+
+- Prompt messages
+
+  <img src="./screenshots/successful%20book%20prompt.png" alt="screenshot" />
+
+
 ## Known Bugs
 
 So far so good there are no bugs related to this project 😎
