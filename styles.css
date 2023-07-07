@@ -135,7 +135,7 @@
   }
   
   .footer {
-    background-color: #f7f7f7;
+    background-color:wheat;
     padding: 20px;
     display: flex;
     justify-content: flex-end;
@@ -190,7 +190,7 @@
   }
   
   .footer-section ul li a {
-    color: #e46262;
+    color: #da0f0f;
     text-decoration: none;
   }
   
