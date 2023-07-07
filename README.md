@@ -42,7 +42,7 @@ Other dependencies (listed in package.json)
 So far so good there are no bugs related to this project 😎
 Contributions to this project are welcome. If you find any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.
 
-
+## Contact me @
 - Email: kibetbrian4645@gmail.com
 
 ## License
